@@ -5,7 +5,7 @@ const http = require('http');
 // =======================
 const rateLimitWindow = 60 * 1000; // Time window: 1 minute
 const maxRequests = 5;             // Maximum allowed requests per IP within the time window
-const ipRequests = {};             // Object to track requests per IP: { ip: { count, startTime } }
+const ipRequests = {};   // here using (in memory but usually used redis)            // Object to track requests per IP: { ip: { count, startTime } }
 
 /**
  * -----------------------------
@@ -19,7 +19,7 @@ const ipRequests = {};             // Object to track requests per IP: { ip: { c
 const rateLimitMiddleware = (req, res) => {
     const ip = req.socket.remoteAddress; // Get client IP address
 
-    console.log({ ip });
+    // console.log({ ip });
 
     const currentTime = Date.now();      // Current timestamp
 
